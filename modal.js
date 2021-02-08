@@ -81,11 +81,12 @@ class Modal extends HTMLElement {
     slots[1].addEventListener('slotchange', event => {
       console.dir(slots[1].assignedNodes());
     });
-
+    const backdrop = this.shadowRoot.querySelector('#backdrop');
     const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
     const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
     cancelButton.addEventListener('click', this._cancel);
     confirmButton.addEventListener('click', this._confirm);
+    backdrop.addEventListener('click', this._cancel )
     cancelButton.addEventListener('cancel', () => {
       console.log('Cancel inside the component');
     })
