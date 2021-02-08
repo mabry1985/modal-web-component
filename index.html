@@ -21,5 +21,15 @@
   <jm-modal>
     <p>Do you want to destroy my sweater?</p>
   </jm-modal>
+  <p>Will you answer my question?</p>
+  <button>Yes</button>
+  <script>
+    const confirmButton = document.querySelector('button');
+    const modal = document.querySelector('jm-modal');
+
+    confirmButton.addEventListener('click', () => {
+      modal.setAttribute('open', '');
+    })
+  </script>
 </body>
 </html>
