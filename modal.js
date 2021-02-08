@@ -71,8 +71,8 @@ class Modal extends HTMLElement {
           <slot name="body"></slot>
         </section>
         <section id="actions">
-          <button>Cancel</button>
-          <button>Confirm</button>
+          <button id="cancel-btn">Cancel</button>
+          <button id="confirm-btn">Confirm</button>
         </section>
       </div>
     `;
@@ -81,10 +81,27 @@ class Modal extends HTMLElement {
     slots[1].addEventListener('slotchange', event => {
       console.dir(slots[1].assignedNodes());
     });
+
+    const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
+    const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
+    cancelButton.addEventListener('click', this._cancel);
+    confirmButton.addEventListener('click', this._confirm);
   }
 
-  open() {
+  open = () => {
     this.setAttribute('open', '');
+  }
+
+  hide = () => {
+    this.removeAttribute('open');
+  }
+
+  _cancel = () => {
+    this.hide();
+  }
+
+  _confirm = () => {
+    this.hide();
   }
 
 } 
