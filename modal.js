@@ -1,7 +1,7 @@
 class Modal extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = `
       <style>
         #backdrop {
@@ -14,6 +14,12 @@ class Modal extends HTMLElement {
           z-index: 10;
           opacity: 0;
           pointer-events: none;
+        }
+
+        :host([open]) #backdrop,
+        :host([open]) #modal {
+          opacity: 1;
+          pointer-events: all;
         }
 
         #modal {
@@ -69,9 +75,13 @@ class Modal extends HTMLElement {
           <button>Confirm</button>
         </section>
       </div>
-    `
+    `;
   }
 
-}
+  open() {
+    this.setAttribute('open', '');
+  }
 
-customElements.define('jm-modal', Modal);
+} 
+
+customElements.define("jm-modal", Modal);
